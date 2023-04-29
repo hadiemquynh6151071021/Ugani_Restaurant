@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Ugani_Restaurant.Models.HOADON>
+@using Ugani_Restaurant.Models
+@using System
+@{
+    ViewBag.Title = "Danh sách hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";   
+    KHACHHANG kHACHHANG = new KHACHHANG();
+}
+
+<h2>Danh sách đơn hàng</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+           Tên khách hàng
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYDATCOC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIENCOC)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @kHACHHANG.getFullname_Cus(item.AspNetUser.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NGAYDATCOC)
+    </td>
+    <td>
+        @item.TONGTIEN.Value.ToString("#,##0").Replace(',','.') đ
+    </td>
+    <td>
+        @item.TIENCOC.Value.ToString("#,##0").Replace(',', '.') đ
+    </td>
+    <td>
+        @Html.ActionLink("Chi tiết", "Detailsfood", new { id = item.MAKH }, new {@class="btn btn-primary" })
+    </td>
+</tr>
+}
+
+</table>

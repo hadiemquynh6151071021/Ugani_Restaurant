@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Ugani_Restaurant.Models.BANAN>
+@{
+    ViewBag.Title = "Danh sách bàn ăn VIP";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Danh sách bàn ăn</h3>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-danger" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MABAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOAIBAN.TENLOAIBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOGHE)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MABAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOAIBAN.TENLOAIBAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOGHE)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MABAN.Trim() }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MABAN.Trim() }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

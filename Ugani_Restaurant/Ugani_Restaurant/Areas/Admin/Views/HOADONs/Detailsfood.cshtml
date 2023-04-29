@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ugani_Restaurant.Models.CHITIETDATMONAN>
+@using Ugani_Restaurant.Models
+@{
+    ViewBag.Title = "Chi tiết hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    KHACHHANG kHACHHANG = new KHACHHANG();
+}
+
+<h2>Chi tiết hóa đơn</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.TENMONAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.HINHANH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MONAN.TENMONAN)
+    </td>
+    <td>
+        <img src="~/Content/foodimages/@item.MONAN.HINHANH" width="100px" height="100px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SOLUONG)
+    </td>
+</tr>
+    }
+
+</table>
+
