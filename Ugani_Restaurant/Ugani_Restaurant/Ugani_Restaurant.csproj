@@ -409,6 +409,8 @@
     <Content Include="Areas\Admin\Views\HOADONs\Detailsfood.cshtml" />
     <Content Include="Areas\Admin\Views\HOADONs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\chart\chart-area-demo.js" />
     <Content Include="Scripts\chart\chart-pie-demo.js" />
     <Content Include="Scripts\chart\Chart.min.js" />
