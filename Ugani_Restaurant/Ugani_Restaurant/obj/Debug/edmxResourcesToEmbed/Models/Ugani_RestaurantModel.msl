@@ -105,17 +105,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CHITIETDATBANs">
-      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
-        <MappingFragment StoreEntitySet="CHITIETDATBAN">
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-          <ScalarProperty Name="MABAN" ColumnName="MABAN" />
-          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-          <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
-          <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CHITIETDATMONANs">
       <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
         <MappingFragment StoreEntitySet="CHITIETDATMONAN">
@@ -144,5 +133,24 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Statistical_Bill" FunctionName="UGANI_1Model.Store.Sp_Statistical_Bill">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="UGANI_1Model.Sp_Statistical_Bill_Result">
+          <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CHITIETDATBANs">
+      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
+        <MappingFragment StoreEntitySet="CHITIETDATBAN">
+          <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
+          <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+          <ScalarProperty Name="MABAN" ColumnName="MABAN" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

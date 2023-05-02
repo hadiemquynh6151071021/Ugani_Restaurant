@@ -230,6 +230,9 @@
     <Compile Include="Models\MONAN.cs">
       <DependentUpon>Ugani_RestaurantModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sp_Statistical_Bill_Result.cs">
+      <DependentUpon>Ugani_RestaurantModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Ugani_RestaurantModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

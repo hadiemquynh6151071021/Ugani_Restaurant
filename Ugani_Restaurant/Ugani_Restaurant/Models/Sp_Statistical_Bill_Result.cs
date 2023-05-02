@@ -10,15 +10,10 @@
 namespace Ugani_Restaurant.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class HOADON
+    public partial class Sp_Statistical_Bill_Result
     {
-        public string MAKH { get; set; }
-        public Nullable<System.DateTime> NGAYDATCOC { get; set; }
-        public Nullable<decimal> TONGTIEN { get; set; }
-        public Nullable<decimal> TIENCOC { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public Nullable<int> MONTH { get; set; }
+        public Nullable<int> TOTAL { get; set; }
     }
 }

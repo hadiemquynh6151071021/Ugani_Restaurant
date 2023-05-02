@@ -11,16 +11,14 @@ namespace Ugani_Restaurant.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class CHITIETDATBAN
     {
         public string MAKH { get; set; }
         public string MABAN { get; set; }
         public Nullable<System.DateTime> NGAYDAT { get; set; }
-        public Nullable<System.TimeSpan> GIODATBAN { get; set; }
-        public Nullable<System.TimeSpan> GIOTRABAN { get; set; }
+        public Nullable<System.DateTime> GIODATBAN { get; set; }
+        public Nullable<System.DateTime> GIOTRABAN { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual BANAN BANAN { get; set; }

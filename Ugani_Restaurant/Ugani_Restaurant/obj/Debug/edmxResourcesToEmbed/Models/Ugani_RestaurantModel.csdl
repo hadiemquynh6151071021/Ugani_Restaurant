@@ -58,10 +58,10 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF_1_DANHSACHMONAN" FromRole="AspNetUsers" ToRole="CHITIETDATMONAN" />
-    <NavigationProperty Name="CHITIETDATBANs" Relationship="Self.RBTV_PF1_DANHSACHBAN" FromRole="AspNetUsers" ToRole="CHITIETDATBAN" />
     <NavigationProperty Name="HOADON" Relationship="Self.RBTV_PF1_HOADON" FromRole="AspNetUsers" ToRole="HOADON" />
     <NavigationProperty Name="KHACHHANGs" Relationship="Self.RBTV_PF1_KHACHHANG" FromRole="AspNetUsers" ToRole="KHACHHANG" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="CHITIETDATBANs" Relationship="UGANI_1Model.RBTV_PF1_DANHSACHBAN" FromRole="AspNetUser" ToRole="CHITIETDATBAN" />
   </EntityType>
   <EntityType Name="BANAN">
     <Key>
@@ -71,7 +71,7 @@
     <Property Name="MALOAIBAN" Type="Int32" Nullable="false" />
     <Property Name="SOGHE" Type="Byte" />
     <NavigationProperty Name="LOAIBAN" Relationship="Self.RBTV_PF_BANAN" FromRole="BANAN" ToRole="LOAIBAN" />
-    <NavigationProperty Name="CHITIETDATBANs" Relationship="Self.RBTV_PF2_DANHSACHBAN" FromRole="BANAN" ToRole="CHITIETDATBAN" />
+    <NavigationProperty Name="CHITIETDATBANs" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHBAN" FromRole="BANAN" ToRole="CHITIETDATBAN" />
   </EntityType>
   <EntityType Name="KHACHHANG">
     <Key>
@@ -113,19 +113,6 @@
     <Property Name="DVT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LOAIMON" Relationship="Self.RBTV1_PF_MONAN" FromRole="MONAN" ToRole="LOAIMON" />
     <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF2_DANHSACHMONAN" FromRole="MONAN" ToRole="CHITIETDATMONAN" />
-  </EntityType>
-  <EntityType Name="CHITIETDATBAN">
-    <Key>
-      <PropertyRef Name="MAKH" />
-      <PropertyRef Name="MABAN" />
-    </Key>
-    <Property Name="MAKH" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MABAN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
-    <Property Name="GIODATBAN" Type="Time" Precision="7" />
-    <Property Name="GIOTRABAN" Type="Time" Precision="7" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.RBTV_PF1_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="AspNetUsers" />
-    <NavigationProperty Name="BANAN" Relationship="Self.RBTV_PF2_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="BANAN" />
   </EntityType>
   <EntityType Name="CHITIETDATMONAN">
     <Key>
@@ -189,18 +176,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RBTV_PF1_DANHSACHBAN">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="CHITIETDATBAN" Type="Self.CHITIETDATBAN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CHITIETDATBAN">
-        <PropertyRef Name="MAKH" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="RBTV_PF1_HOADON">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
@@ -234,18 +209,6 @@
       </Principal>
       <Dependent Role="BANAN">
         <PropertyRef Name="MALOAIBAN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RBTV_PF2_DANHSACHBAN">
-    <End Role="BANAN" Type="Self.BANAN" Multiplicity="1" />
-    <End Role="CHITIETDATBAN" Type="Self.CHITIETDATBAN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BANAN">
-        <PropertyRef Name="MABAN" />
-      </Principal>
-      <Dependent Role="CHITIETDATBAN">
-        <PropertyRef Name="MABAN" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -288,7 +251,6 @@
     <EntitySet Name="LOAIBANs" EntityType="Self.LOAIBAN" />
     <EntitySet Name="LOAIMONs" EntityType="Self.LOAIMON" />
     <EntitySet Name="MONANs" EntityType="Self.MONAN" />
-    <EntitySet Name="CHITIETDATBANs" EntityType="Self.CHITIETDATBAN" />
     <EntitySet Name="CHITIETDATMONANs" EntityType="Self.CHITIETDATMONAN" />
     <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -303,10 +265,6 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
     </AssociationSet>
-    <AssociationSet Name="RBTV_PF1_DANHSACHBAN" Association="Self.RBTV_PF1_DANHSACHBAN">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
-    </AssociationSet>
     <AssociationSet Name="RBTV_PF1_HOADON" Association="Self.RBTV_PF1_HOADON">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="HOADON" EntitySet="HOADONs" />
@@ -318,10 +276,6 @@
     <AssociationSet Name="RBTV_PF_BANAN" Association="Self.RBTV_PF_BANAN">
       <End Role="LOAIBAN" EntitySet="LOAIBANs" />
       <End Role="BANAN" EntitySet="BANANs" />
-    </AssociationSet>
-    <AssociationSet Name="RBTV_PF2_DANHSACHBAN" Association="Self.RBTV_PF2_DANHSACHBAN">
-      <End Role="BANAN" EntitySet="BANANs" />
-      <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
     </AssociationSet>
     <AssociationSet Name="RBTV1_PF_MONAN" Association="Self.RBTV1_PF_MONAN">
       <End Role="LOAIMON" EntitySet="LOAIMONs" />
@@ -335,5 +289,58 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <FunctionImport Name="Sp_Statistical_Bill" ReturnType="Collection(UGANI_1Model.Sp_Statistical_Bill_Result)">
+      <Parameter Name="Year" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="CHITIETDATBANs" EntityType="UGANI_1Model.CHITIETDATBAN" />
+    <AssociationSet Name="RBTV_PF1_DANHSACHBAN" Association="UGANI_1Model.RBTV_PF1_DANHSACHBAN">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
+    </AssociationSet>
+    <AssociationSet Name="RBTV_PF2_DANHSACHBAN" Association="UGANI_1Model.RBTV_PF2_DANHSACHBAN">
+      <End Role="BANAN" EntitySet="BANANs" />
+      <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
+    </AssociationSet>
   </EntityContainer>
+  <ComplexType Name="Sp_Statistical_Bill_Result">
+    <Property Type="Int32" Name="MONTH" Nullable="true" />
+    <Property Type="Int32" Name="TOTAL" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="CHITIETDATBAN">
+    <Key>
+      <PropertyRef Name="MAKH" />
+      <PropertyRef Name="MABAN" />
+    </Key>
+    <Property Name="MAKH" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="MABAN" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
+    <Property Name="GIODATBAN" Type="DateTime" Precision="3" />
+    <Property Name="GIOTRABAN" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="UGANI_1Model.RBTV_PF1_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="AspNetUser" />
+    <NavigationProperty Name="BANAN" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="BANAN" />
+  </EntityType>
+  <Association Name="RBTV_PF1_DANHSACHBAN">
+    <End Type="UGANI_1Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="UGANI_1Model.CHITIETDATBAN" Role="CHITIETDATBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CHITIETDATBAN">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RBTV_PF2_DANHSACHBAN">
+    <End Type="UGANI_1Model.BANAN" Role="BANAN" Multiplicity="1" />
+    <End Type="UGANI_1Model.CHITIETDATBAN" Role="CHITIETDATBAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANAN">
+        <PropertyRef Name="MABAN" />
+      </Principal>
+      <Dependent Role="CHITIETDATBAN">
+        <PropertyRef Name="MABAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

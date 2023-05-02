@@ -13,7 +13,12 @@ namespace Ugani_Restaurant.Controllers
     public class KHACHHANGsController : Controller
     {
         private UGANI_1Entities db = new UGANI_1Entities();
-
+        public string getFullname_Cus(string mail)
+        {
+            string temp1 = db.AspNetUsers.Where(m => m.Email == mail).FirstOrDefault().Id;
+            string temp2 = db.KHACHHANGs.Where(m => m.ID_USER == temp1).FirstOrDefault().TENKHACHHANG;
+            return temp2;
+        }
         public void Save_Customer(string id_user, string fname)
         {
             KHACHHANG kHACHHANG = new KHACHHANG();

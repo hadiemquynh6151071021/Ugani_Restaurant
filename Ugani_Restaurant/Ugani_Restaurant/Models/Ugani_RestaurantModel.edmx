@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UGANI_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="UGANI_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -84,8 +84,8 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATBAN' does not have a primary
           <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="MABAN" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="NGAYDAT" Type="date" />
-          <Property Name="GIODATBAN" Type="time" Precision="7" />
-          <Property Name="GIOTRABAN" Type="time" Precision="7" />
+          <Property Name="GIODATBAN" Type="datetime" />
+          <Property Name="GIOTRABAN" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -110,9 +110,13 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <Property Name="TONGTIEN" Type="decimal" Precision="18" Scale="0" />
           <Property Name="TIENCOC" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="KHACHHANG">
           <Key>
             <PropertyRef Name="ID" />
+            
+            
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_USER" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -226,6 +230,18 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RBTV_PF_KHACHHANG">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KHACHHANG">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RBTV_PF1_DANHSACHBAN">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="CHITIETDATBAN" Type="Self.CHITIETDATBAN" Multiplicity="*" />
@@ -247,18 +263,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             </Principal>
             <Dependent Role="HOADON">
               <PropertyRef Name="MAKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RBTV_PF1_KHACHHANG">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="KHACHHANG">
-              <PropertyRef Name="ID_USER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,6 +302,9 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Sp_Statistical_Bill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Year" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="UGANI_1ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -306,7 +313,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BANAN" EntityType="Self.BANAN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAIBAN" EntityType="Self.LOAIBAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAIMON" EntityType="Self.LOAIMON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MONAN" EntityType="Self.MONAN" Schema="dbo" store:Type="Tables" />
@@ -335,6 +341,13 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
     [HOADON].[TIENCOC] AS [TIENCOC]
     FROM [dbo].[HOADON] AS [HOADON]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KHACHHANG].[ID] AS [ID], 
+    [KHACHHANG].[ID_USER] AS [ID_USER], 
+    [KHACHHANG].[TENKHACHHANG] AS [TENKHACHHANG]
+    FROM [dbo].[KHACHHANG] AS [KHACHHANG]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -359,6 +372,10 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             <End Role="LOAIBAN" EntitySet="LOAIBAN" />
             <End Role="BANAN" EntitySet="BANAN" />
           </AssociationSet>
+          <AssociationSet Name="RBTV_PF_KHACHHANG" Association="Self.RBTV_PF_KHACHHANG">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+          </AssociationSet>
           <AssociationSet Name="RBTV_PF1_DANHSACHBAN" Association="Self.RBTV_PF1_DANHSACHBAN">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBAN" />
@@ -366,10 +383,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <AssociationSet Name="RBTV_PF1_HOADON" Association="Self.RBTV_PF1_HOADON">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="HOADON" EntitySet="HOADON" />
-          </AssociationSet>
-          <AssociationSet Name="RBTV_PF1_KHACHHANG" Association="Self.RBTV_PF1_KHACHHANG">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
           </AssociationSet>
           <AssociationSet Name="RBTV_PF2_DANHSACHBAN" Association="Self.RBTV_PF2_DANHSACHBAN">
             <End Role="BANAN" EntitySet="BANAN" />
@@ -384,8 +397,7 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             <End Role="MONAN" EntitySet="MONAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UGANI_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -447,10 +459,10 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF_1_DANHSACHMONAN" FromRole="AspNetUsers" ToRole="CHITIETDATMONAN" />
-          <NavigationProperty Name="CHITIETDATBANs" Relationship="Self.RBTV_PF1_DANHSACHBAN" FromRole="AspNetUsers" ToRole="CHITIETDATBAN" />
           <NavigationProperty Name="HOADON" Relationship="Self.RBTV_PF1_HOADON" FromRole="AspNetUsers" ToRole="HOADON" />
           <NavigationProperty Name="KHACHHANGs" Relationship="Self.RBTV_PF1_KHACHHANG" FromRole="AspNetUsers" ToRole="KHACHHANG" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="CHITIETDATBANs" Relationship="UGANI_1Model.RBTV_PF1_DANHSACHBAN" FromRole="AspNetUser" ToRole="CHITIETDATBAN" />
         </EntityType>
         <EntityType Name="BANAN">
           <Key>
@@ -460,7 +472,7 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <Property Name="MALOAIBAN" Type="Int32" Nullable="false" />
           <Property Name="SOGHE" Type="Byte" />
           <NavigationProperty Name="LOAIBAN" Relationship="Self.RBTV_PF_BANAN" FromRole="BANAN" ToRole="LOAIBAN" />
-          <NavigationProperty Name="CHITIETDATBANs" Relationship="Self.RBTV_PF2_DANHSACHBAN" FromRole="BANAN" ToRole="CHITIETDATBAN" />
+          <NavigationProperty Name="CHITIETDATBANs" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHBAN" FromRole="BANAN" ToRole="CHITIETDATBAN" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -502,19 +514,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <Property Name="DVT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LOAIMON" Relationship="Self.RBTV1_PF_MONAN" FromRole="MONAN" ToRole="LOAIMON" />
           <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF2_DANHSACHMONAN" FromRole="MONAN" ToRole="CHITIETDATMONAN" />
-        </EntityType>
-        <EntityType Name="CHITIETDATBAN">
-          <Key>
-            <PropertyRef Name="MAKH" />
-            <PropertyRef Name="MABAN" />
-          </Key>
-          <Property Name="MAKH" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MABAN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
-          <Property Name="GIODATBAN" Type="Time" Precision="7" />
-          <Property Name="GIOTRABAN" Type="Time" Precision="7" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.RBTV_PF1_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="AspNetUsers" />
-          <NavigationProperty Name="BANAN" Relationship="Self.RBTV_PF2_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="BANAN" />
         </EntityType>
         <EntityType Name="CHITIETDATMONAN">
           <Key>
@@ -578,18 +577,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RBTV_PF1_DANHSACHBAN">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="CHITIETDATBAN" Type="Self.CHITIETDATBAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CHITIETDATBAN">
-              <PropertyRef Name="MAKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RBTV_PF1_HOADON">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
@@ -623,18 +610,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             </Principal>
             <Dependent Role="BANAN">
               <PropertyRef Name="MALOAIBAN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RBTV_PF2_DANHSACHBAN">
-          <End Role="BANAN" Type="Self.BANAN" Multiplicity="1" />
-          <End Role="CHITIETDATBAN" Type="Self.CHITIETDATBAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BANAN">
-              <PropertyRef Name="MABAN" />
-            </Principal>
-            <Dependent Role="CHITIETDATBAN">
-              <PropertyRef Name="MABAN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -677,7 +652,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <EntitySet Name="LOAIBANs" EntityType="Self.LOAIBAN" />
           <EntitySet Name="LOAIMONs" EntityType="Self.LOAIMON" />
           <EntitySet Name="MONANs" EntityType="Self.MONAN" />
-          <EntitySet Name="CHITIETDATBANs" EntityType="Self.CHITIETDATBAN" />
           <EntitySet Name="CHITIETDATMONANs" EntityType="Self.CHITIETDATMONAN" />
           <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -692,10 +666,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
           </AssociationSet>
-          <AssociationSet Name="RBTV_PF1_DANHSACHBAN" Association="Self.RBTV_PF1_DANHSACHBAN">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
-          </AssociationSet>
           <AssociationSet Name="RBTV_PF1_HOADON" Association="Self.RBTV_PF1_HOADON">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="HOADON" EntitySet="HOADONs" />
@@ -707,10 +677,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
           <AssociationSet Name="RBTV_PF_BANAN" Association="Self.RBTV_PF_BANAN">
             <End Role="LOAIBAN" EntitySet="LOAIBANs" />
             <End Role="BANAN" EntitySet="BANANs" />
-          </AssociationSet>
-          <AssociationSet Name="RBTV_PF2_DANHSACHBAN" Association="Self.RBTV_PF2_DANHSACHBAN">
-            <End Role="BANAN" EntitySet="BANANs" />
-            <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
           </AssociationSet>
           <AssociationSet Name="RBTV1_PF_MONAN" Association="Self.RBTV1_PF_MONAN">
             <End Role="LOAIMON" EntitySet="LOAIMONs" />
@@ -724,7 +690,60 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="Sp_Statistical_Bill" ReturnType="Collection(UGANI_1Model.Sp_Statistical_Bill_Result)">
+          <Parameter Name="Year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="CHITIETDATBANs" EntityType="UGANI_1Model.CHITIETDATBAN" />
+          <AssociationSet Name="RBTV_PF1_DANHSACHBAN" Association="UGANI_1Model.RBTV_PF1_DANHSACHBAN">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
+          </AssociationSet>
+          <AssociationSet Name="RBTV_PF2_DANHSACHBAN" Association="UGANI_1Model.RBTV_PF2_DANHSACHBAN">
+            <End Role="BANAN" EntitySet="BANANs" />
+            <End Role="CHITIETDATBAN" EntitySet="CHITIETDATBANs" />
+          </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="Sp_Statistical_Bill_Result">
+          <Property Type="Int32" Name="MONTH" Nullable="true" />
+          <Property Type="Int32" Name="TOTAL" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="CHITIETDATBAN">
+          <Key>
+            <PropertyRef Name="MAKH" />
+            <PropertyRef Name="MABAN" />
+          </Key>
+          <Property Name="MAKH" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MABAN" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
+          <Property Name="GIODATBAN" Type="DateTime" Precision="3" />
+          <Property Name="GIOTRABAN" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="UGANI_1Model.RBTV_PF1_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="AspNetUser" />
+          <NavigationProperty Name="BANAN" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHBAN" FromRole="CHITIETDATBAN" ToRole="BANAN" />
+        </EntityType>
+        <Association Name="RBTV_PF1_DANHSACHBAN">
+          <End Type="UGANI_1Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="UGANI_1Model.CHITIETDATBAN" Role="CHITIETDATBAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CHITIETDATBAN">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RBTV_PF2_DANHSACHBAN">
+          <End Type="UGANI_1Model.BANAN" Role="BANAN" Multiplicity="1" />
+          <End Type="UGANI_1Model.CHITIETDATBAN" Role="CHITIETDATBAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANAN">
+              <PropertyRef Name="MABAN" />
+            </Principal>
+            <Dependent Role="CHITIETDATBAN">
+              <PropertyRef Name="MABAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -835,17 +854,6 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETDATBANs">
-            <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
-              <MappingFragment StoreEntitySet="CHITIETDATBAN">
-                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-                <ScalarProperty Name="MABAN" ColumnName="MABAN" />
-                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-                <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
-                <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CHITIETDATMONANs">
             <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
               <MappingFragment StoreEntitySet="CHITIETDATMONAN">
@@ -874,6 +882,25 @@ warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key de
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Statistical_Bill" FunctionName="UGANI_1Model.Store.Sp_Statistical_Bill">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UGANI_1Model.Sp_Statistical_Bill_Result">
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CHITIETDATBANs">
+            <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
+              <MappingFragment StoreEntitySet="CHITIETDATBAN">
+                <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
+                <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="MABAN" ColumnName="MABAN" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

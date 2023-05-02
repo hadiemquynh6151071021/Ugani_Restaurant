@@ -58,26 +58,26 @@
 
         <!-- Earnings (Monthly) Card Example -->
         @*<div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    Tổng truy cập
-                                </div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PageView</div>
-                                    </div>
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Tổng truy cập
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PageView</div>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
+        </div>*@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
@@ -118,7 +118,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <select id="select" class="form-control" style="width:150px;">
+            <select id="ddlYear" class="form-control" style="width:150px;">
                 <option value="0">Select Year</option>
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
@@ -135,24 +135,47 @@
         <script src="~/Scripts/chart/Chart.min.js"></script>
 
         <script>
-            var ctx = document.getElementById("canvas");
 
-            var barChartData = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                datasets: [{
-                    labels: 'Dataset 1',
-                    //backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-                    //borderColor: window.chartColors.red,
-                    borderWidth: 1,
-                    data: [1, 2, 3, 4, 5, 6, 7]
-                }]
-            };
+            $('#ddlYear').on('change', function () {
+                var year = $(this).val();
 
-                    var myBarChart = new Chart(ctx, {
+                $.get('/HOADONs/GetResultReport?year=' + year, function (resp) {
+                    ResgisterChart(resp);
+                });
+            });
+
+            
+
+            function ResgisterChart(lsData) {
+                var lsLabel = [];
+                var lsDataSource = [];
+                $.each(lsData, function (index, item) {
+                    lsLabel.push(item.MONTH)
+                    lsDataSource.push(item.TOTAL);
+                });
+
+                console.log(lsDataSource);
+
+                var ctx = document.getElementById("canvas");
+
+                var barChartData = {
+                    labels:lsLabel,
+                    datasets: [{
+                        labels: 'Dataset 1',
+                        backgroundColor: "rgb(15,158,162)",
+                        //borderColor: window.chartColors.red,
+                        borderWidth: 1,
+                        data: lsDataSource
+                    }]
+                };
+
+                var myBarChart = new Chart(ctx, {
                     type: 'bar',
                     data: barChartData,
                     //options: options
                 });
+            }
+            
         </script>
     }
 

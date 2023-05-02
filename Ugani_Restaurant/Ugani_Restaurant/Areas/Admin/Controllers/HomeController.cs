@@ -17,13 +17,13 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
             ViewBag.PageView = HttpContext.Application["PageView"].ToString();
             ViewBag.Online = HttpContext.Application["Online"].ToString();
             ViewBag.CountFoods = CountFoods();
-            ViewBag.CountBills = CountBills();
+            ViewBag.CountBills = CountBills().ToString();
             return View();
         }
 
         public int CountFoods()
         {
-            int Sum = db.MONANs.Count();
+            int Sum = db.MONANs.ToList().Count();
             return Sum;
         }
 

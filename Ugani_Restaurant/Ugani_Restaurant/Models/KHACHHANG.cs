@@ -11,8 +11,7 @@ namespace Ugani_Restaurant.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-
+    
     public partial class KHACHHANG
     {
         public int ID { get; set; }
@@ -20,13 +19,5 @@ namespace Ugani_Restaurant.Models
         public string TENKHACHHANG { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-
-        public string getFullname_Cus(string username)
-        {
-            UGANI_1Entities db = new UGANI_1Entities();
-            string id_user = db.AspNetUsers.Where(m => m.Email == username).FirstOrDefault().Id;
-            string temp = db.KHACHHANGs.Where(m => m.ID_USER == id_user).FirstOrDefault().TENKHACHHANG;
-            return temp;
-        }
     }
 }

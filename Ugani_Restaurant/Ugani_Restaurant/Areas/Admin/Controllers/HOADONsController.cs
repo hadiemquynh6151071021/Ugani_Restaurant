@@ -123,6 +123,19 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult GetResultReport(int year)
+        {
+            var lsData = GetReportByYear(year);
+            return Json(lsData, JsonRequestBehavior.AllowGet);
+        }
+        public List<Sp_Statistical_Bill_Result> GetReportByYear(int year)
+        {
+            using (db)
+            {
+                var lsData = db.Sp_Statistical_Bill(year).ToList();
+                return lsData;
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
