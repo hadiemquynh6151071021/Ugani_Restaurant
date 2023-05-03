@@ -30,6 +30,10 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var dataset = db.CHITIETDATBANs.Where(m => m.MAKH == id);
+            IList<CHITIETDATBAN> listTable = new List<CHITIETDATBAN>();
+            listTable = dataset.ToList();
+            ViewBag.lsTable = listTable;
             HOADON hOADON = db.HOADONs.Find(id);
             var list = db.CHITIETDATMONANs.Include(m=>m.AspNetUser).Include(m=>m.MONAN);
             list = list.Where(m => m.MAKH == hOADON.MAKH);

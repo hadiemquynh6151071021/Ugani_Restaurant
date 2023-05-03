@@ -8,7 +8,12 @@
 
 <h2>Chi tiết hóa đơn</h2>
 
-
+<h5>Bàn</h5>
+@foreach(var i in ViewBag.lsTable)
+            {
+                <span>@i.MABAN</span>
+            }
+<h5>Menu</h5>
 <table class="table">
     <tr>
         <th>
@@ -25,17 +30,17 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.MONAN.TENMONAN)
-    </td>
-    <td>
-        <img src="~/Content/foodimages/@item.MONAN.HINHANH" width="100px" height="100px" />
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SOLUONG)
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONAN.TENMONAN)
+            </td>
+            <td>
+                <img src="~/Content/foodimages/@item.MONAN.HINHANH" width="100px" height="100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLUONG)
+            </td>
+        </tr>
     }
 
 </table>

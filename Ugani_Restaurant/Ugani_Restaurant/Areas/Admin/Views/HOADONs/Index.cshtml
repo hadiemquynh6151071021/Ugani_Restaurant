@@ -3,7 +3,7 @@
 @using System
 @{
     ViewBag.Title = "Danh sách hóa đơn";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";   
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     KHACHHANG kHACHHANG = new KHACHHANG();
 }
 
@@ -33,7 +33,7 @@
         @kHACHHANG.getFullname_Cus(item.AspNetUser.UserName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.NGAYDATCOC)
+        @item.NGAYDATCOC.Value.ToString("dd/MM/yyyy")
     </td>
     <td>
         @item.TONGTIEN.Value.ToString("#,##0").Replace(',','.') đ
