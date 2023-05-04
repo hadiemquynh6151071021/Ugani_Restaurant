@@ -294,3 +294,13 @@ BEGIN
 END
 
 EXEC Sp_Statistical_Bill 2023;
+
+CREATE PROCEDURE Sp_ListYear
+AS
+BEGIN
+	select YEAR(HOADON.NGAYDATCOC) as Nam
+	from HOADON
+	group by YEAR(HOADON.NGAYDATCOC)
+END
+
+EXEC Sp_ListYear;

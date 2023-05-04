@@ -115,16 +115,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HOADONs">
-      <EntityTypeMapping TypeName="UGANI_1Model.HOADON">
-        <MappingFragment StoreEntitySet="HOADON">
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-          <ScalarProperty Name="NGAYDATCOC" ColumnName="NGAYDATCOC" />
-          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-          <ScalarProperty Name="TIENCOC" ColumnName="TIENCOC" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="UGANI_1Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -149,6 +139,18 @@
           <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
           <ScalarProperty Name="MABAN" ColumnName="MABAN" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_ListYear" FunctionName="UGANI_1Model.Store.Sp_ListYear" />
+    <EntitySetMapping Name="HOADONs">
+      <EntityTypeMapping TypeName="UGANI_1Model.HOADON">
+        <MappingFragment StoreEntitySet="HOADON">
+          <ScalarProperty Name="TIENCOC" ColumnName="TIENCOC" />
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+          <ScalarProperty Name="NGAYDATCOC" ColumnName="NGAYDATCOC" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="MAHD" ColumnName="MAHD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

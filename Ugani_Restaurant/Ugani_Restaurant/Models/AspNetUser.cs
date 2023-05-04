@@ -23,6 +23,7 @@ namespace Ugani_Restaurant.Models
             this.KHACHHANGs = new HashSet<KHACHHANG>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.CHITIETDATBANs = new HashSet<CHITIETDATBAN>();
+            this.HOADONs = new HashSet<HOADON>();
         }
     
         public string Id { get; set; }
@@ -44,12 +45,13 @@ namespace Ugani_Restaurant.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDATMONAN> CHITIETDATMONANs { get; set; }
-        public virtual HOADON HOADON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDATBAN> CHITIETDATBANs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }

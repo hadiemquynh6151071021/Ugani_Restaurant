@@ -14,16 +14,22 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            ViewBag.a = getListYear();
             ViewBag.PageView = HttpContext.Application["PageView"].ToString();
             ViewBag.Online = HttpContext.Application["Online"].ToString();
             ViewBag.CountFoods = CountFoods();
-            ViewBag.CountBills = CountBills().ToString();
+            ViewBag.CountBills = CountBills();
             return View();
         }
 
+        public Object getListYear()
+        {
+            var lsYear = db.Sp_ListYear().ToList();
+            return lsYear;
+        }
         public int CountFoods()
         {
-            int Sum = db.MONANs.ToList().Count();
+            int Sum = db.MONANs.Count();
             return Sum;
         }
 

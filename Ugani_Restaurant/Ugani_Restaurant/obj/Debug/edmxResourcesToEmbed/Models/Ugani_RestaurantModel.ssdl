@@ -94,12 +94,11 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a prima
     <Property Name="SOLUONG" Type="int" />
     <Property Name="NGAYDAT" Type="date" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'UGANI_1.dbo.HOADON' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="HOADON">
     <Key>
-      <PropertyRef Name="MAKH" />
+      <PropertyRef Name="MAHD" />
     </Key>
+    <Property Name="MAHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="NGAYDATCOC" Type="date" />
     <Property Name="TONGTIEN" Type="decimal" Precision="18" Scale="0" />
@@ -249,7 +248,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
   </Association>
   <Association Name="RBTV_PF1_HOADON">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -295,6 +294,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Sp_ListYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Sp_Statistical_Bill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Year" Type="int" Mode="In" />
   </Function>
@@ -306,6 +306,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BANAN" EntityType="Self.BANAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIBAN" EntityType="Self.LOAIBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIMON" EntityType="Self.LOAIMON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MONAN" EntityType="Self.MONAN" Schema="dbo" store:Type="Tables" />
@@ -325,14 +326,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     [CHITIETDATMONAN].[SOLUONG] AS [SOLUONG], 
     [CHITIETDATMONAN].[NGAYDAT] AS [NGAYDAT]
     FROM [dbo].[CHITIETDATMONAN] AS [CHITIETDATMONAN]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="HOADON" EntityType="Self.HOADON" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [HOADON].[MAKH] AS [MAKH], 
-    [HOADON].[NGAYDATCOC] AS [NGAYDATCOC], 
-    [HOADON].[TONGTIEN] AS [TONGTIEN], 
-    [HOADON].[TIENCOC] AS [TIENCOC]
-    FROM [dbo].[HOADON] AS [HOADON]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

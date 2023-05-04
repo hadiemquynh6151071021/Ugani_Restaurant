@@ -14,12 +14,16 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
     {
         private UGANI_1Entities db = new UGANI_1Entities();
 
+        public ActionResult Index1()
+        {
+
+            return View(db.HOADONs.ToList());
+        }
+
         // GET: Admin/HOADONs
         public ActionResult Index()
         {
-            decimal a=0;
-            string b = a.ToString("#,##0").Replace(',', '.');
-            var hOADONs = db.HOADONs.Include(h => h.AspNetUser).OrderByDescending(m=>m.NGAYDATCOC);
+            var hOADONs = db.HOADONs.Include(m => m.AspNetUser).OrderByDescending(m=>m.NGAYDATCOC);
             return View(hOADONs.ToList());
         }
 

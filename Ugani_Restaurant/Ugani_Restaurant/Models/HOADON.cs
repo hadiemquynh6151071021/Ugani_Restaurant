@@ -14,6 +14,7 @@ namespace Ugani_Restaurant.Models
     
     public partial class HOADON
     {
+        public int MAHD { get; set; }
         public string MAKH { get; set; }
         public Nullable<System.DateTime> NGAYDATCOC { get; set; }
         public Nullable<decimal> TONGTIEN { get; set; }
