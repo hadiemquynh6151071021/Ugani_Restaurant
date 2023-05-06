@@ -42,7 +42,7 @@
         @item.TIENCOC.Value.ToString("#,##0").Replace(',', '.') đ
     </td>
     <td>
-        @Html.ActionLink("Chi tiết", "Detailsfood", new { id = item.MAKH }, new {@class="btn btn-primary" })
+        @Html.ActionLink("Chi tiết", "Detailsfood", new { id = item.MAKH, date=item.NGAYDATCOC }, new {@class="btn btn-primary" })
     </td>
 </tr>
 }

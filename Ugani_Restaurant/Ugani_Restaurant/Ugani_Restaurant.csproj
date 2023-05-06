@@ -411,7 +411,6 @@
     <Content Include="Areas\Admin\Views\MONANs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HOADONs\Detailsfood.cshtml" />
     <Content Include="Areas\Admin\Views\HOADONs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HOADONs\Index1.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />

@@ -13,7 +13,6 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
     public class HOADONsController : Controller
     {
         private UGANI_1Entities db = new UGANI_1Entities();
-
         public ActionResult Index1()
         {
 
@@ -28,109 +27,25 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
         }
 
         // GET: Admin/HOADONs/Details/5
-        public ActionResult Detailsfood(string id)
+        public ActionResult Detailsfood(string id,DateTime date)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var dataset = db.CHITIETDATBANs.Where(m => m.MAKH == id);
+            var dataset = db.CHITIETDATBANs.Where(m => m.MAKH == id).Where(m=>m.NGAYDAT==date);
             IList<CHITIETDATBAN> listTable = new List<CHITIETDATBAN>();
             listTable = dataset.ToList();
             ViewBag.lsTable = listTable;
-            HOADON hOADON = db.HOADONs.Find(id);
             var list = db.CHITIETDATMONANs.Include(m=>m.AspNetUser).Include(m=>m.MONAN);
-            list = list.Where(m => m.MAKH == hOADON.MAKH);
-            if (hOADON == null)
-            {
-                return HttpNotFound();
-            }
+            list = list.Where(m => m.MAKH == id).Where(m=>m.NGAYDAT==date);
+            //if (hOADON == null)
+            //{
+            //    return HttpNotFound();
+            //}
             return View(list.ToList());
         }
 
-        // GET: Admin/HOADONs/Create
-        public ActionResult Create()
-        {
-            ViewBag.MAKH = new SelectList(db.AspNetUsers, "Id", "UserName");
-            return View();
-        }
-
-        // POST: Admin/HOADONs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MAKH,NGAYDATCOC,TONGTIEN,TIENCOC")] HOADON hOADON)
-        {
-            if (ModelState.IsValid)
-            {
-                db.HOADONs.Add(hOADON);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.MAKH = new SelectList(db.AspNetUsers, "Id", "UserName", hOADON.MAKH);
-            return View(hOADON);
-        }
-
-        // GET: Admin/HOADONs/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HOADON hOADON = db.HOADONs.Find(id);
-            if (hOADON == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MAKH = new SelectList(db.AspNetUsers, "Id", "UserName", hOADON.MAKH);
-            return View(hOADON);
-        }
-
-        // POST: Admin/HOADONs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MAKH,NGAYDATCOC,TONGTIEN,TIENCOC")] HOADON hOADON)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(hOADON).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.MAKH = new SelectList(db.AspNetUsers, "Id", "UserName", hOADON.MAKH);
-            return View(hOADON);
-        }
-
-        // GET: Admin/HOADONs/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HOADON hOADON = db.HOADONs.Find(id);
-            if (hOADON == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hOADON);
-        }
-
-        // POST: Admin/HOADONs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            HOADON hOADON = db.HOADONs.Find(id);
-            db.HOADONs.Remove(hOADON);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
         public ActionResult GetResultReport(int year)
         {
             var lsData = GetReportByYear(year);
