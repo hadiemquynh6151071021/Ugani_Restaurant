@@ -24,6 +24,7 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
             var mONANs = db.MONANs.Include(m => m.LOAIMON);
             List<MONAN> a = new List<MONAN>();
             ViewBag.MALOAIMON = new SelectList(db.LOAIMONs, "MALOAIMON", "TENLOAIMON");
+            ViewBag.item_Selected = maloaimon;
             if (maloaimon == 0)
             {
                 return View(a.ToPagedList(pageNumber, pageSize));

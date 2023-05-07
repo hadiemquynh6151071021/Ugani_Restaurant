@@ -6,6 +6,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="~/Content/AdminStyle/main.css" />
+
 <h3>Danh sách bàn ăn</h3>
 
 <p>
@@ -13,16 +15,16 @@
 </p>
 <table class="table">
     <tr>
-            <th>
-                MÃ BÀN
-            </th>
-            <th>
-                LOẠI BÀN
-            </th>
-            <th>
-                SỐ GHẾ
-            </th>
-            <th></th>
+        <th>
+            MÃ BÀN
+        </th>
+        <th>
+            LOẠI BÀN
+        </th>
+        <th>
+            SỐ GHẾ
+        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)

@@ -5,9 +5,10 @@
 @{
     ViewBag.Title = "Danh sách món ăn";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
 }
 
-<link href="~/Content/AdminStyle/main.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/AdminStyle/main.css" />
 
 <h2>Danh sách món ăn</h2>
 @Html.ActionLink("Thêm món mới", "Create", null, new { @class = "btn btn-danger btn-create" })
@@ -42,4 +43,6 @@
     }
 </div>
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page,maloaimon = ViewBag.item_Selected }))
+
+
