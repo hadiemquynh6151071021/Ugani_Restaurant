@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,28 +16,24 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
         private UGANI_1Entities db = new UGANI_1Entities();
 
         // GET: Admin/MONANs
-        public ActionResult Index(int maloaimon = 0)
+        public ActionResult Index(int ?page, int maloaimon=0)
         {
-            //var mONANs = db.MONANs.Include(m => m.LOAIMON);
-            //if (maloaimon != 0)
-            //{
-            //    mONANs = mONANs.Where(c => c.MALOAIMON == maloaimon);
-            //}
-            //    ViewBag.MALOAIMON = new SelectList(db.LOAIMONs, "MALOAIMON", "TENLOAIMON");
-            //    return View(mONANs.ToList());
+            if (page == null) page = 1;
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
             var mONANs = db.MONANs.Include(m => m.LOAIMON);
             List<MONAN> a = new List<MONAN>();
             ViewBag.MALOAIMON = new SelectList(db.LOAIMONs, "MALOAIMON", "TENLOAIMON");
             if (maloaimon == 0)
             {
-                return View(a);
+                return View(a.ToPagedList(pageNumber, pageSize));
             }
             else
             {
                 mONANs = mONANs.Where(c => c.MALOAIMON == maloaimon).OrderBy(m => m.TENMONAN);
 
                 a = mONANs.ToList();
-                return View(a);
+                return View(a.ToPagedList(pageNumber, pageSize));
             }
         }
 

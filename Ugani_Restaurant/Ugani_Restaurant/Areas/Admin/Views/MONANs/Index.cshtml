@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Ugani_Restaurant.Models.MONAN>
+﻿
+@model PagedList.IPagedList<Ugani_Restaurant.Models.MONAN>
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Danh sách món ăn";
@@ -39,3 +41,5 @@
         </div>
     }
 </div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

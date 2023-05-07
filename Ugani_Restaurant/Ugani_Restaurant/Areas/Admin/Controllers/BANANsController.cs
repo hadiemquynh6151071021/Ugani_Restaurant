@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,20 +16,32 @@ namespace Ugani_Restaurant.Areas.Admin.Controllers
         private UGANI_1Entities db = new UGANI_1Entities();
 
         //GET: Admin/BANANs/VIP
-        public ActionResult ListVIP()
+        public ActionResult ListVIP(int ?page)
         {
+            if (page == null) page = 1;
             var bANANs = db.BANANs.Include(b => b.LOAIBAN);
-            bANANs = bANANs.Where(b => b.MALOAIBAN == 1).OrderBy(m=>m.SOGHE);
+            bANANs = bANANs.Where(b => b.MALOAIBAN == 1).OrderBy(m => m.SOGHE);
+            //var books = db.Books.Include(b => b.Author).Include(b => b.Category).OrderBy(b => b.BookID);
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
             ViewBag.MALOAIBAN = new SelectList(db.LOAIBANs, "MALOAIBAN", "TENLOAIBAN");
-            return View(bANANs.ToList());
+            return View(bANANs.ToPagedList(pageNumber, pageSize));
+            //var bANANs = db.BANANs.Include(b => b.LOAIBAN);
+            //bANANs = bANANs.Where(b => b.MALOAIBAN == 1).OrderBy(m=>m.SOGHE);
+            //ViewBag.MALOAIBAN = new SelectList(db.LOAIBANs, "MALOAIBAN", "TENLOAIBAN");
+            //return View(bANANs.ToList());
         }
         //GET: Admin/BANANs/Simple
-        public ActionResult ListSimple()
+        public ActionResult ListSimple(int? page)
         {
+            if (page == null) page = 1;
             var bANANs = db.BANANs.Include(b => b.LOAIBAN);
             bANANs = bANANs.Where(b => b.MALOAIBAN == 2).OrderBy(m => m.SOGHE);
+            //var books = db.Books.Include(b => b.Author).Include(b => b.Category).OrderBy(b => b.BookID);
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
             ViewBag.MALOAIBAN = new SelectList(db.LOAIBANs, "MALOAIBAN", "TENLOAIBAN");
-            return View(bANANs.ToList());
+            return View(bANANs.ToPagedList(pageNumber, pageSize));
         }
 
 

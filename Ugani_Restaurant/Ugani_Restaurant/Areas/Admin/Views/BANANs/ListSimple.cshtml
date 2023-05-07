@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Ugani_Restaurant.Models.BANAN>
+﻿@model PagedList.IPagedList<Ugani_Restaurant.Models.BANAN>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Danh sách bàn ăn VIP";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -12,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MABAN)
+            MÃ BÀN
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LOAIBAN.TENLOAIBAN)
+            LOẠI BÀN
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SOGHE)
+            SỐ GHẾ
         </th>
         <th></th>
     </tr>
@@ -43,5 +44,7 @@
     }
 
 </table>
+@*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount*@
+@Html.PagedListPager(Model, page => Url.Action("ListSimple", new { page }))
 
 
