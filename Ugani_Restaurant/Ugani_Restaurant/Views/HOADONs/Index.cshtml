@@ -5,9 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string id_user = User.Identity.GetUserId();
 }
-
-<h2>Index</h2>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h2>Danh sách giỏ hàng</h2>
+<label>Chọn ngày đặt</label>
+<input id="date" type="datetime-local" />
+<button class=" btn btn-primary " id="btnAddBill" data-id=@id_user>Xác nhận danh sách món ăn</button>
 <table class="table">
     <tr>
         <th>
@@ -41,17 +43,16 @@
         </tr>
     }
 
-</table> 
-<label>Chọn ngày đặt</label>
-<input id="date" type="date" />
-<button class=" btn btn-primary btnAddBill" data-idUser="@id_user">Xác nhận danh sách món ăn</button>
+</table>
+
 
 @section addtoCard{
     <script>
 
         $(function () {
-            $(".btnAddBill").click(function () {
-                var Id_user = $(this).data("idUser");
+            $("#btnAddBill").click(function () {
+                alert("!");
+                var Id_user = $(this).data("id");
                 var dateValue = document.getElementById('date').value;
                 $.ajax({
                     type: "POST",

@@ -69,13 +69,11 @@
     <Property Name="MALOAIBAN" Type="int" Nullable="false" />
     <Property Name="SOGHE" Type="tinyint" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATBAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="CHITIETDATBAN">
     <Key>
-      <PropertyRef Name="MAKH" />
-      <PropertyRef Name="MABAN" />
+      <PropertyRef Name="STT" />
     </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="MABAN" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="NGAYDAT" Type="date" />
@@ -304,20 +302,12 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BANAN" EntityType="Self.BANAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHITIETDATBAN" EntityType="Self.CHITIETDATBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHITIETDATMONAN" EntityType="Self.CHITIETDATMONAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIBAN" EntityType="Self.LOAIBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIMON" EntityType="Self.LOAIMON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MONAN" EntityType="Self.MONAN" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CHITIETDATBAN" EntityType="Self.CHITIETDATBAN" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [CHITIETDATBAN].[MAKH] AS [MAKH], 
-    [CHITIETDATBAN].[MABAN] AS [MABAN], 
-    [CHITIETDATBAN].[NGAYDAT] AS [NGAYDAT], 
-    [CHITIETDATBAN].[GIODATBAN] AS [GIODATBAN], 
-    [CHITIETDATBAN].[GIOTRABAN] AS [GIOTRABAN]
-    FROM [dbo].[CHITIETDATBAN] AS [CHITIETDATBAN]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [KHACHHANG].[ID] AS [ID], 

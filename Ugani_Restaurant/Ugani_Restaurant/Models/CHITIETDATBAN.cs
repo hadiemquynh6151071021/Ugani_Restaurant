@@ -14,6 +14,7 @@ namespace Ugani_Restaurant.Models
     
     public partial class CHITIETDATBAN
     {
+        public int STT { get; set; }
         public string MAKH { get; set; }
         public string MABAN { get; set; }
         public Nullable<System.DateTime> NGAYDAT { get; set; }

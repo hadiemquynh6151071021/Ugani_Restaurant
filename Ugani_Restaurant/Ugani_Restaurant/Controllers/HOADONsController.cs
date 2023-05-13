@@ -17,19 +17,38 @@ namespace Ugani_Restaurant.Controllers
         public ActionResult AddFoodForBill(string idUser,DateTime date)
         {
             
+            
+
+            //decimal SumBan = 0;
+            decimal SumMonAn = 0;
+
+            //List<CHITIETDATBAN> listTable = db.CHITIETDATBANs.Include(m => m.BANAN).Where(m => m.MAKH == idUser).Where(m => m.NGAYDAT == null).ToList();
+            //foreach(var item in listTable)
+            //{
+            //    SumBan += item.BANAN.LOAIBAN.DONGIA.GetValueOrDefault() * item.BANAN.SOGHE.GetValueOrDefault();
+            //    CHITIETDATBAN cHITIETDATBAN = new CHITIETDATBAN();
+            //    cHITIETDATBAN.MAKH = item.MAKH;
+            //    cHITIETDATBAN.MABAN = item.MABAN;
+            //}
+
+            List<CHITIETDATMONAN> listFood = db.CHITIETDATMONANs.Include(m => m.MONAN).Where(m => m.MAKH == idUser).Where(m => m.NGAYDAT == null).ToList();
+            foreach (var item in listFood)
+            {
+                SumMonAn += item.MONAN.DONGIA.GetValueOrDefault() * item.SOLUONG.GetValueOrDefault();
+                CHITIETDATMONAN cHITIETDATMONAN = db.CHITIETDATMONANs.FirstOrDefault(m => m.STT == item.STT);
+                cHITIETDATMONAN.MAKH = item.MAKH;
+                cHITIETDATMONAN.MAMONAN = item.MAMONAN;
+                cHITIETDATMONAN.NGAYDAT = date;
+                db.SaveChanges();
+            }
             HOADON hOADON = new HOADON();
             hOADON.MAKH = idUser;
             hOADON.NGAYDATCOC = date;
+            hOADON.TONGTIEN = SumMonAn;
             hOADON.TINHTRANG = "Đang chờ duyệt";
-
-            decimal SumBan;
-            
-            CHITIETDATMONAN cHITIETDATMONAN = new CHITIETDATMONAN();
-            cHITIETDATMONAN.MAKH = makh;
-            cHITIETDATMONAN.MAMONAN = mamonan;
-            cHITIETDATMONAN.SOLUONG = soluong;
-            db.CHITIETDATMONANs.Add(cHITIETDATMONAN);
+            db.HOADONs.Add(hOADON);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
         // GET: HOADONs

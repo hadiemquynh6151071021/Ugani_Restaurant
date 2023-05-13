@@ -121,17 +121,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="CHITIETDATBANs">
-      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
-        <MappingFragment StoreEntitySet="CHITIETDATBAN">
-          <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
-          <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
-          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-          <ScalarProperty Name="MABAN" ColumnName="MABAN" />
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="Sp_ListYear" FunctionName="UGANI_1Model.Store.Sp_ListYear" />
     <EntitySetMapping Name="HOADONs">
       <EntityTypeMapping TypeName="UGANI_1Model.HOADON">
@@ -150,6 +139,18 @@
           <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
           <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
           <ScalarProperty Name="MAMONAN" ColumnName="MAMONAN" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETDATBANs">
+      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATBAN">
+        <MappingFragment StoreEntitySet="CHITIETDATBAN">
+          <ScalarProperty Name="GIOTRABAN" ColumnName="GIOTRABAN" />
+          <ScalarProperty Name="GIODATBAN" ColumnName="GIODATBAN" />
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+          <ScalarProperty Name="MABAN" ColumnName="MABAN" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="STT" ColumnName="STT" />
         </MappingFragment>

@@ -21,14 +21,14 @@
         <AssociationConnector Association="UGANI_1Model.RBTV_PF_BANAN" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.RBTV1_PF_MONAN" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATBAN" Width="1.5" PointX="8.25" PointY="10.125" />
-        <AssociationConnector Association="UGANI_1Model.RBTV_PF1_DANHSACHBAN" />
-        <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHBAN" />
         <EntityTypeShape EntityType="UGANI_1Model.HOADON" Width="1.5" PointX="5.25" PointY="16.5" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF1_HOADON" />
         <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATMONAN" Width="1.5" PointX="8.25" PointY="5.375" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHMONAN" />
+        <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATBAN" Width="1.5" PointX="8.25" PointY="10.125" />
+        <AssociationConnector Association="UGANI_1Model.RBTV_PF1_DANHSACHBAN" />
+        <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHBAN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

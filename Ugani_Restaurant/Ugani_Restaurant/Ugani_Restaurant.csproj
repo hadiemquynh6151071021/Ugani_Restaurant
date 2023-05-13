@@ -182,7 +182,6 @@
     <Compile Include="Areas\Admin\Controllers\LOAIMONsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MONANsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CHITIETDATMONANsController.cs" />
     <Compile Include="Controllers\HOADONsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHACHHANGsController.cs" />
@@ -480,11 +479,6 @@
     <Content Include="Views\MONANs\Details.cshtml" />
     <Content Include="Views\MONANs\Edit.cshtml" />
     <Content Include="Views\MONANs\Index.cshtml" />
-    <Content Include="Views\CHITIETDATMONANs\Create.cshtml" />
-    <Content Include="Views\CHITIETDATMONANs\Delete.cshtml" />
-    <Content Include="Views\CHITIETDATMONANs\Details.cshtml" />
-    <Content Include="Views\CHITIETDATMONANs\Edit.cshtml" />
-    <Content Include="Views\CHITIETDATMONANs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
