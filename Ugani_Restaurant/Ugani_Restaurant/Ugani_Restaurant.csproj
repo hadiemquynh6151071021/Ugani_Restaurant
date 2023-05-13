@@ -182,9 +182,12 @@
     <Compile Include="Areas\Admin\Controllers\LOAIMONsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MONANsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CHITIETDATMONANsController.cs" />
+    <Compile Include="Controllers\HOADONsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHACHHANGsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MONANsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -417,6 +420,7 @@
     <Content Include="Scripts\chart\chart-area-demo.js" />
     <Content Include="Scripts\chart\chart-pie-demo.js" />
     <Content Include="Scripts\chart\Chart.min.js" />
+    <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -466,11 +470,25 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\HOADONs\Create.cshtml" />
+    <Content Include="Views\HOADONs\Delete.cshtml" />
+    <Content Include="Views\HOADONs\Details.cshtml" />
+    <Content Include="Views\HOADONs\Edit.cshtml" />
+    <Content Include="Views\HOADONs\Index.cshtml" />
+    <Content Include="Views\MONANs\Create.cshtml" />
+    <Content Include="Views\MONANs\Delete.cshtml" />
+    <Content Include="Views\MONANs\Details.cshtml" />
+    <Content Include="Views\MONANs\Edit.cshtml" />
+    <Content Include="Views\MONANs\Index.cshtml" />
+    <Content Include="Views\CHITIETDATMONANs\Create.cshtml" />
+    <Content Include="Views\CHITIETDATMONANs\Delete.cshtml" />
+    <Content Include="Views\CHITIETDATMONANs\Details.cshtml" />
+    <Content Include="Views\CHITIETDATMONANs\Edit.cshtml" />
+    <Content Include="Views\CHITIETDATMONANs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\ClientStyle\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

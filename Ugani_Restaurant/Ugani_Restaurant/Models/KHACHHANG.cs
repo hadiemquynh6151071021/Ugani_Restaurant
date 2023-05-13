@@ -21,7 +21,6 @@ namespace Ugani_Restaurant.Models
         public string TENKHACHHANG { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-
         public string getFullname_Cus(string mail)
         {
             string temp1 = db.AspNetUsers.Where(m => m.Email == mail).FirstOrDefault().Id;

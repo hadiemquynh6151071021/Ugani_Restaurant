@@ -82,13 +82,11 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATBAN' does not have a primary
     <Property Name="GIODATBAN" Type="datetime" />
     <Property Name="GIOTRABAN" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="CHITIETDATMONAN">
     <Key>
-      <PropertyRef Name="MAKH" />
-      <PropertyRef Name="MAMONAN" />
+      <PropertyRef Name="STT" />
     </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="MAMONAN" Type="int" Nullable="false" />
     <Property Name="SOLUONG" Type="int" />
@@ -102,7 +100,7 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a prima
     <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="NGAYDATCOC" Type="date" />
     <Property Name="TONGTIEN" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="TIENCOC" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TINHTRANG" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -306,6 +304,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BANAN" EntityType="Self.BANAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHITIETDATMONAN" EntityType="Self.CHITIETDATMONAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIBAN" EntityType="Self.LOAIBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAIMON" EntityType="Self.LOAIMON" Schema="dbo" store:Type="Tables" />
@@ -318,14 +317,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     [CHITIETDATBAN].[GIODATBAN] AS [GIODATBAN], 
     [CHITIETDATBAN].[GIOTRABAN] AS [GIOTRABAN]
     FROM [dbo].[CHITIETDATBAN] AS [CHITIETDATBAN]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="CHITIETDATMONAN" EntityType="Self.CHITIETDATMONAN" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [CHITIETDATMONAN].[MAKH] AS [MAKH], 
-    [CHITIETDATMONAN].[MAMONAN] AS [MAMONAN], 
-    [CHITIETDATMONAN].[SOLUONG] AS [SOLUONG], 
-    [CHITIETDATMONAN].[NGAYDAT] AS [NGAYDAT]
-    FROM [dbo].[CHITIETDATMONAN] AS [CHITIETDATMONAN]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

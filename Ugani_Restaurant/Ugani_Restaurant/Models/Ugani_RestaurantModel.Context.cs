@@ -37,9 +37,9 @@ namespace Ugani_Restaurant.Models
         public virtual DbSet<LOAIBAN> LOAIBANs { get; set; }
         public virtual DbSet<LOAIMON> LOAIMONs { get; set; }
         public virtual DbSet<MONAN> MONANs { get; set; }
-        public virtual DbSet<CHITIETDATMONAN> CHITIETDATMONANs { get; set; }
         public virtual DbSet<CHITIETDATBAN> CHITIETDATBANs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
+        public virtual DbSet<CHITIETDATMONAN> CHITIETDATMONANs { get; set; }
     
         public virtual ObjectResult<Sp_Statistical_Bill_Result> Sp_Statistical_Bill(Nullable<int> year)
         {

@@ -14,6 +14,7 @@ namespace Ugani_Restaurant.Models
     
     public partial class CHITIETDATMONAN
     {
+        public int STT { get; set; }
         public string MAKH { get; set; }
         public int MAMONAN { get; set; }
         public Nullable<int> SOLUONG { get; set; }

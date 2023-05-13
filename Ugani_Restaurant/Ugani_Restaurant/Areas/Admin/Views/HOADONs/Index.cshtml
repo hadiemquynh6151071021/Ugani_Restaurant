@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.TONGTIEN)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TIENCOC)
+            @Html.DisplayNameFor(model => model.TINHTRANG)
         </th>
         <th></th>
     </tr>
@@ -39,10 +39,10 @@
         @item.TONGTIEN.Value.ToString("#,##0").Replace(',','.') đ
     </td>
     <td>
-        @item.TIENCOC.Value.ToString("#,##0").Replace(',', '.') đ
+        @item.TINHTRANG
     </td>
     <td>
-        @Html.ActionLink("Chi tiết", "Detailsfood", new { id = item.MAKH, date=item.NGAYDATCOC }, new {@class="btn btn-primary" })
+        @Html.ActionLink("Xác nhận đơn", "Detailsfood", new { id = item.MAKH, date = item.NGAYDATCOC }, new { @class = "btn btn-primary" })
     </td>
 </tr>
 }

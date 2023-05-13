@@ -14,6 +14,7 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body>
+    
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Ugani Restaurant</a>
@@ -29,11 +30,12 @@
                         @Html.ActionLink("ĐẶT BÀN", "#", "#", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("ĐẶT MÓN", "#", "#", new { @class = "nav-link" })
+                        @Html.ActionLink("ĐẶT MÓN", "Index", "MONANs", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("LIÊN HỆ", "#", "#", new { @class = "nav-link" })
                     </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -78,6 +80,7 @@
         </div>
     </div>
     @RenderSection("scripts", required: false)
+    @RenderSection("addtoCard", false)
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 </html>

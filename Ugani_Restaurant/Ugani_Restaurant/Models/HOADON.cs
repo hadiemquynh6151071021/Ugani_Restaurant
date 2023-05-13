@@ -18,7 +18,7 @@ namespace Ugani_Restaurant.Models
         public string MAKH { get; set; }
         public Nullable<System.DateTime> NGAYDATCOC { get; set; }
         public Nullable<decimal> TONGTIEN { get; set; }
-        public Nullable<decimal> TIENCOC { get; set; }
+        public string TINHTRANG { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

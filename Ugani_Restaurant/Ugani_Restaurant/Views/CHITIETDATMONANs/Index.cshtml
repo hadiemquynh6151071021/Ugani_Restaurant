@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Ugani_Restaurant.Models.CHITIETDATMONAN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @ViewBag.a
+            @Html.DisplayNameFor(model => model.MONAN.TENMONAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.HINHANH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.DONGIA)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MONAN.TENMONAN)
+    </td>
+    <td>
+        <img src="~/Content/foodimages/@item.MONAN.HINHANH" width="50px" height="50px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SOLUONG)
+    </td>
+    <td>
+        @item.MONAN.DONGIA.Value.ToString("#,##0").Replace(',', '.')
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.STT }, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.STT }, new { @class = "btn btn-primary" })
+    </td>
+</tr>
+    }

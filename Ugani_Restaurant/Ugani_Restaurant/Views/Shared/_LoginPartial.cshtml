@@ -1,23 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Ugani_Restaurant.Models
-
+<link rel="stylesheet" href="~/Content/bootstrap.css" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/StyleCSS/layout.css" />
+<script src="~/Scripts/bootstrap.bundle.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 
 @if (Request.IsAuthenticated)
-{
-
-    string temp = User.Identity.GetUserName();
-    KHACHHANG kHACHHANG = new KHACHHANG();
-    string fname = kHACHHANG.getFullname_Cus(temp);
-
+            {
+                string temp = User.Identity.GetUserName();
+                KHACHHANG kHACHHANG = new KHACHHANG();
+                string fname = kHACHHANG.getFullname_Cus(temp);
+                string id_user = User.Identity.GetUserId();
+            
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
+                {
+                    @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
             <li>
                 @Html.ActionLink("Chào " + @fname + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "login-name", title = "Manage" })
             </li>
             <li><a class="loginLogout" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+
+           <li><a class="detail_card" href="/hoadons/index?id=@id_user" style="text-decoration: none; color: rgb(127,127,127); font-weight: 500;">Giỏ hàng</a></li>
         </ul>
     }
 }
@@ -25,6 +31,7 @@ else
 {
 
     <ul class="nav navbar-nav navbar-right">
+
         <li>@Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

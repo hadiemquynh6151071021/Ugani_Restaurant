@@ -15,20 +15,20 @@
         <EntityTypeShape EntityType="UGANI_1Model.LOAIBAN" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UGANI_1Model.LOAIMON" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="UGANI_1Model.MONAN" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATMONAN" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="UGANI_1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF1_KHACHHANG" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF_BANAN" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.RBTV1_PF_MONAN" ManuallyRouted="false" />
-        <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHMONAN" ManuallyRouted="false" />
         <AssociationConnector Association="UGANI_1Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATBAN" Width="1.5" PointX="8.25" PointY="10.125" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF1_DANHSACHBAN" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHBAN" />
         <EntityTypeShape EntityType="UGANI_1Model.HOADON" Width="1.5" PointX="5.25" PointY="16.5" />
         <AssociationConnector Association="UGANI_1Model.RBTV_PF1_HOADON" />
+        <EntityTypeShape EntityType="UGANI_1Model.CHITIETDATMONAN" Width="1.5" PointX="8.25" PointY="5.375" />
+        <AssociationConnector Association="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN" />
+        <AssociationConnector Association="UGANI_1Model.RBTV_PF2_DANHSACHMONAN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

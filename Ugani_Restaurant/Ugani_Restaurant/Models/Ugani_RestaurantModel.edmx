@@ -87,13 +87,11 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATBAN' does not have a primary
           <Property Name="GIODATBAN" Type="datetime" />
           <Property Name="GIOTRABAN" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CHITIETDATMONAN">
           <Key>
-            <PropertyRef Name="MAKH" />
-            <PropertyRef Name="MAMONAN" />
+            <PropertyRef Name="STT" />
           </Key>
+          <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="MAMONAN" Type="int" Nullable="false" />
           <Property Name="SOLUONG" Type="int" />
@@ -107,7 +105,7 @@ warning 6002: The table/view 'UGANI_1.dbo.CHITIETDATMONAN' does not have a prima
           <Property Name="MAKH" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="NGAYDATCOC" Type="date" />
           <Property Name="TONGTIEN" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="TIENCOC" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TINHTRANG" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -313,6 +311,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BANAN" EntityType="Self.BANAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETDATMONAN" EntityType="Self.CHITIETDATMONAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAIBAN" EntityType="Self.LOAIBAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAIMON" EntityType="Self.LOAIMON" Schema="dbo" store:Type="Tables" />
@@ -325,14 +324,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
     [CHITIETDATBAN].[GIODATBAN] AS [GIODATBAN], 
     [CHITIETDATBAN].[GIOTRABAN] AS [GIOTRABAN]
     FROM [dbo].[CHITIETDATBAN] AS [CHITIETDATBAN]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="CHITIETDATMONAN" EntityType="Self.CHITIETDATMONAN" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CHITIETDATMONAN].[MAKH] AS [MAKH], 
-    [CHITIETDATMONAN].[MAMONAN] AS [MAMONAN], 
-    [CHITIETDATMONAN].[SOLUONG] AS [SOLUONG], 
-    [CHITIETDATMONAN].[NGAYDAT] AS [NGAYDAT]
-    FROM [dbo].[CHITIETDATMONAN] AS [CHITIETDATMONAN]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -451,11 +442,11 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF_1_DANHSACHMONAN" FromRole="AspNetUsers" ToRole="CHITIETDATMONAN" />
           <NavigationProperty Name="KHACHHANGs" Relationship="Self.RBTV_PF1_KHACHHANG" FromRole="AspNetUsers" ToRole="KHACHHANG" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="CHITIETDATBANs" Relationship="UGANI_1Model.RBTV_PF1_DANHSACHBAN" FromRole="AspNetUser" ToRole="CHITIETDATBAN" />
           <NavigationProperty Name="HOADONs" Relationship="UGANI_1Model.RBTV_PF1_HOADON" FromRole="AspNetUser" ToRole="HOADON" />
+          <NavigationProperty Name="CHITIETDATMONANs" Relationship="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN" FromRole="AspNetUser" ToRole="CHITIETDATMONAN" />
         </EntityType>
         <EntityType Name="BANAN">
           <Key>
@@ -506,19 +497,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <Property Name="DONGIA" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="DVT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LOAIMON" Relationship="Self.RBTV1_PF_MONAN" FromRole="MONAN" ToRole="LOAIMON" />
-          <NavigationProperty Name="CHITIETDATMONANs" Relationship="Self.RBTV_PF2_DANHSACHMONAN" FromRole="MONAN" ToRole="CHITIETDATMONAN" />
-        </EntityType>
-        <EntityType Name="CHITIETDATMONAN">
-          <Key>
-            <PropertyRef Name="MAKH" />
-            <PropertyRef Name="MAMONAN" />
-          </Key>
-          <Property Name="MAKH" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MAMONAN" Type="Int32" Nullable="false" />
-          <Property Name="SOLUONG" Type="Int32" />
-          <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.RBTV_PF_1_DANHSACHMONAN" FromRole="CHITIETDATMONAN" ToRole="AspNetUsers" />
-          <NavigationProperty Name="MONAN" Relationship="Self.RBTV_PF2_DANHSACHMONAN" FromRole="CHITIETDATMONAN" ToRole="MONAN" />
+          <NavigationProperty Name="CHITIETDATMONANs" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHMONAN" FromRole="MONAN" ToRole="CHITIETDATMONAN" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -545,18 +524,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
             </Principal>
             <Dependent Role="AspNetUserLogins">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RBTV_PF_1_DANHSACHMONAN">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="CHITIETDATMONAN" Type="Self.CHITIETDATMONAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CHITIETDATMONAN">
-              <PropertyRef Name="MAKH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -596,18 +563,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RBTV_PF2_DANHSACHMONAN">
-          <End Role="MONAN" Type="Self.MONAN" Multiplicity="1" />
-          <End Role="CHITIETDATMONAN" Type="Self.CHITIETDATMONAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MONAN">
-              <PropertyRef Name="MAMONAN" />
-            </Principal>
-            <Dependent Role="CHITIETDATMONAN">
-              <PropertyRef Name="MAMONAN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -623,7 +578,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <EntitySet Name="LOAIBANs" EntityType="Self.LOAIBAN" />
           <EntitySet Name="LOAIMONs" EntityType="Self.LOAIMON" />
           <EntitySet Name="MONANs" EntityType="Self.MONAN" />
-          <EntitySet Name="CHITIETDATMONANs" EntityType="Self.CHITIETDATMONAN" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -631,10 +585,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="RBTV_PF_1_DANHSACHMONAN" Association="Self.RBTV_PF_1_DANHSACHMONAN">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
           </AssociationSet>
           <AssociationSet Name="RBTV_PF1_KHACHHANG" Association="Self.RBTV_PF1_KHACHHANG">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -647,10 +597,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <AssociationSet Name="RBTV1_PF_MONAN" Association="Self.RBTV1_PF_MONAN">
             <End Role="LOAIMON" EntitySet="LOAIMONs" />
             <End Role="MONAN" EntitySet="MONANs" />
-          </AssociationSet>
-          <AssociationSet Name="RBTV_PF2_DANHSACHMONAN" Association="Self.RBTV_PF2_DANHSACHMONAN">
-            <End Role="MONAN" EntitySet="MONANs" />
-            <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -673,6 +619,15 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <AssociationSet Name="RBTV_PF1_HOADON" Association="UGANI_1Model.RBTV_PF1_HOADON">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <EntitySet Name="CHITIETDATMONANs" EntityType="UGANI_1Model.CHITIETDATMONAN" />
+          <AssociationSet Name="RBTV_PF_1_DANHSACHMONAN" Association="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
+          </AssociationSet>
+          <AssociationSet Name="RBTV_PF2_DANHSACHMONAN" Association="UGANI_1Model.RBTV_PF2_DANHSACHMONAN">
+            <End Role="MONAN" EntitySet="MONANs" />
+            <End Role="CHITIETDATMONAN" EntitySet="CHITIETDATMONANs" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="Sp_Statistical_Bill_Result">
@@ -724,7 +679,7 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <Property Name="MAKH" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="NGAYDATCOC" Type="DateTime" Precision="0" />
           <Property Name="TONGTIEN" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="TIENCOC" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="UGANI_1Model.RBTV_PF1_HOADON" FromRole="HOADON" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="RBTV_PF1_HOADON">
@@ -736,6 +691,42 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
             </Principal>
             <Dependent Role="HOADON">
               <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CHITIETDATMONAN">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAKH" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MAMONAN" Type="Int32" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="NGAYDAT" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUser" Relationship="UGANI_1Model.RBTV_PF_1_DANHSACHMONAN" FromRole="CHITIETDATMONAN" ToRole="AspNetUser" />
+          <NavigationProperty Name="MONAN" Relationship="UGANI_1Model.RBTV_PF2_DANHSACHMONAN" FromRole="CHITIETDATMONAN" ToRole="MONAN" />
+        </EntityType>
+        <Association Name="RBTV_PF_1_DANHSACHMONAN">
+          <End Type="UGANI_1Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="UGANI_1Model.CHITIETDATMONAN" Role="CHITIETDATMONAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CHITIETDATMONAN">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RBTV_PF2_DANHSACHMONAN">
+          <End Type="UGANI_1Model.MONAN" Role="MONAN" Multiplicity="1" />
+          <End Type="UGANI_1Model.CHITIETDATMONAN" Role="CHITIETDATMONAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONAN">
+              <PropertyRef Name="MAMONAN" />
+            </Principal>
+            <Dependent Role="CHITIETDATMONAN">
+              <PropertyRef Name="MAMONAN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -849,16 +840,6 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETDATMONANs">
-            <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
-              <MappingFragment StoreEntitySet="CHITIETDATMONAN">
-                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-                <ScalarProperty Name="MAMONAN" ColumnName="MAMONAN" />
-                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="UGANI_1Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -890,11 +871,22 @@ warning 6002: The table/view 'UGANI_1.dbo.KHACHHANG' does not have a primary key
           <EntitySetMapping Name="HOADONs">
             <EntityTypeMapping TypeName="UGANI_1Model.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
-                <ScalarProperty Name="TIENCOC" ColumnName="TIENCOC" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
                 <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
                 <ScalarProperty Name="NGAYDATCOC" ColumnName="NGAYDATCOC" />
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETDATMONANs">
+            <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
+              <MappingFragment StoreEntitySet="CHITIETDATMONAN">
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="MAMONAN" ColumnName="MAMONAN" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

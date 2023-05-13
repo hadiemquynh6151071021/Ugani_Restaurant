@@ -105,16 +105,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CHITIETDATMONANs">
-      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
-        <MappingFragment StoreEntitySet="CHITIETDATMONAN">
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-          <ScalarProperty Name="MAMONAN" ColumnName="MAMONAN" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="UGANI_1Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -146,11 +136,22 @@
     <EntitySetMapping Name="HOADONs">
       <EntityTypeMapping TypeName="UGANI_1Model.HOADON">
         <MappingFragment StoreEntitySet="HOADON">
-          <ScalarProperty Name="TIENCOC" ColumnName="TIENCOC" />
+          <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
           <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
           <ScalarProperty Name="NGAYDATCOC" ColumnName="NGAYDATCOC" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETDATMONANs">
+      <EntityTypeMapping TypeName="UGANI_1Model.CHITIETDATMONAN">
+        <MappingFragment StoreEntitySet="CHITIETDATMONAN">
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="MAMONAN" ColumnName="MAMONAN" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="STT" ColumnName="STT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

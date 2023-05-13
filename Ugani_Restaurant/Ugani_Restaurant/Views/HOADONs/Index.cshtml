@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Ugani_Restaurant.Models.CHITIETDATMONAN>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string id_user = User.Identity.GetUserId();
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.TENMONAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MONAN.HINHANH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MONAN.TENMONAN)
+            </td>
+            <td>
+                <img src="~/Content/foodimages/@item.MONAN.HINHANH" width="50px" height="50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOLUONG)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa số lượng", "Edit", new { id = item.STT }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.STT }, new { @class = "btn btn-primary", data_id = item.STT })
+            </td>
+        </tr>
+    }
+
+</table> 
+<label>Chọn ngày đặt</label>
+<input id="date" type="date" />
+<button class=" btn btn-primary btnAddBill" data-idUser="@id_user">Xác nhận danh sách món ăn</button>
+
+@section addtoCard{
+    <script>
+
+        $(function () {
+            $(".btnAddBill").click(function () {
+                var Id_user = $(this).data("idUser");
+                var dateValue = document.getElementById('date').value;
+                $.ajax({
+                    type: "POST",
+                    url: "/HOADONs/AddFoodForBill",
+                    data: { "idUser": Id_user, "date": dateValue },
+                    success: function (result) {
+                        alert("Xác nhận thành công!");
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra!");
+                    }
+                });
+            });
+        });
+    </script>
+}
